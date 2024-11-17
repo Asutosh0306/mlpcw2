@@ -125,7 +125,7 @@ class ExperimentBuilder(nn.Module):
         """
         plt.plot(all_grads, alpha=0.3, color="b")
         plt.hlines(0, 0, len(all_grads)+1, linewidth=1, color="k" )
-        plt.xticks(range(0,len(all_grads), 1), layers, rotation="vertical")
+        plt.xticks(range(0,len(all_grads), 1), layers.replace('_weights',''), rotation="vertical")
         plt.xlim(xmin=0, xmax=len(all_grads))
         plt.xlabel("Layers")
         plt.ylabel("Average Gradient")
@@ -153,7 +153,7 @@ class ExperimentBuilder(nn.Module):
         for name, param in named_parameters:
         # Filter layers to include only those with gradients (i.e., weights)
             if 'weight' in name:
-                layers.append(name.replace('layer_dict.', '').replace('_weights','').replace('.', '_'))  
+                layers.append(name.replace('layer_dict.', '').replace('.', '_'))  
                 all_grads.append(param.grad.abs().mean().item())
         
         ########################################
