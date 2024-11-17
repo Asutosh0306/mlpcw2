@@ -47,6 +47,12 @@ if args.block_type == 'conv_block':
 elif args.block_type == 'empty_block':
     processing_block_type = EmptyBlock
     dim_reduction_block_type = EmptyBlock
+elif args.block_type == 'bn_conv_block':
+    processing_block_type = BNProcessingBlock
+    dim_reduction_block_type = BNDimensionalityReductionBlock
+elif args.block_type == 'bnrc_conv_block':
+    processing_block_type = BNRCProcessingBlock
+    dim_reduction_block_type = BNDimensionalityReductionBlock
 else:
     raise ModuleNotFoundError
 
