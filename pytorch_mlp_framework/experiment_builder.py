@@ -153,7 +153,7 @@ class ExperimentBuilder(nn.Module):
         for name, param in named_parameters:
         # Filter layers to include only those with gradients (i.e., weights)
             if 'weight' in name:
-                layers.append(name.replace('layer_dict.', '').replace('.', '_').replace('_weights','').replace('.weights',''))   
+                layers.append(name.replace('layer_dict.', '').replace('.', '_').replace('_weights','_').replace('.weights','_'))   
                 all_grads.append(param.grad.abs().mean().item())
         
         ########################################
